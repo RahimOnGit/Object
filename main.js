@@ -6,13 +6,42 @@ let medieinstitutet = {
     students: [],
     teachers: []
   };
-
-  function addTeacherToSchool(teacher)
+//functions 
+  function addTeacherToSchool(teacher) //add teacher to school
   {
     medieinstitutet.teachers.push(teacher)
 
   }
+  function addSubjectToTeacher(sub,teacher)
+  {
+    teacher.subjects.push(sub);
+    sub.teachers = teacher;
+    return teacher;
+
+  }
+
+
+  function removeFromArray(array,item)
+  {
+    return array.filter(element=> element !==item);
+  }
+
+  function removeTeacherSubject(subject)
+  {
+   this.subjects = removeFromArray(this.subjects,subject);
+   subject.teachers = removeFromArray(subject.teachers,this)
+
+  }
+  function removeStudentSubject(subject)
+  {
+   this.subjects = removeFromArray(this.subjects,subject);
+   subject.students = removeFromArray(subject.students,this)
+
+  }
   
+
+
+
   //subjects
   
 
@@ -121,7 +150,8 @@ teacher.subjects.push(this);
 this.subjects.push(subject) 
 subject.students.push(this)
 
-    }
+    },
+    quitSubject: removeStudentSubject
 
   }
 
@@ -136,7 +166,8 @@ subject.students.push(this)
 this.subjects.push(subject) 
 subject.students.push(this)
 
-  }
+  },
+  quitSubject: removeStudentSubject
 };
   let babikir = {
     name : "Kory",
@@ -149,7 +180,8 @@ subject.students.push(this)
 this.subjects.push(subject) 
 subject.students.push(this)
 
-  }
+  },
+  quitSubject: removeStudentSubject
 }
   let mazin = {
     name : "Mazin",
@@ -163,7 +195,8 @@ subject.students.push(this)
 this.subjects.push(subject) 
 subject.students.push(this)
 
-  }
+  },
+  quitSubject: removeStudentSubject
 
   }
   let mohammed = {
@@ -177,7 +210,8 @@ subject.students.push(this)
 this.subjects.push(subject) 
 subject.students.push(this)
 
-  }
+  },
+  quitSubject: removeStudentSubject
 
   }
 
@@ -191,7 +225,8 @@ subject.students.push(this)
     {
       this.subjects.push(subject);
       subject.teachers.push(this);
-    }
+    },
+    quitSubject : removeTeacherSubject
   };
   
   let erik = {
@@ -202,9 +237,26 @@ subject.students.push(this)
      
       this.subjects.push(subject);
       subject.teachers.push(this);
-    }
+    },
+    quitSubject : removeTeacherSubject
   };
 
+
+  let niklas = {
+    name: "Niklas",
+    subjects: [],
+    addSubject: function(subject)
+    {
+     
+      //subject.teachers= []; //
+      this.subjects.push(subject);
+      subject.teachers.push(this);
+      
+    },
+    quitSubject : removeTeacherSubject
+    };
+
+//
  
   console.log(maria)
   console.log(maria.name," teaches",maria.subjects.join())
@@ -215,33 +267,16 @@ subject.students.push(this)
   //console.log("Subject math has :", math.students)
 
 
-  function addSubjectToTeacher(sub,teacher)
-  {
-    teacher.subjects.push(sub);
-    sub.teachers = teacher;
-    return teacher;
-
-  }
+  
+  
 
   // let updateTeacher = addSubjectToTeacher(math,erik);
   // console.log(updateTeacher);
   // console.log(math.teachers);
 
 
-let niklas = {
-    name: "Niklas",
-    subjects: [],
-    addSubject: function(subject)
-    {
-     
-      //subject.teachers= []; //
-      this.subjects.push(subject);
-      subject.teachers.push(this);
-      
-    }
-
-}
   
+
 
 
 // maria.addSubject(math)
@@ -276,7 +311,9 @@ console.log("Swedish teachers : ",svenska.teachers)
 console.log("English teachers : ",english.teachers)
 
 math.removeTeacher(erik);
+niklas.quitSubject(math);
 console.log("updated math teachers",math.teachers)
+
 
 
 
@@ -290,6 +327,10 @@ rahim.enlistToSubject(math)
 
 console.log("math student ", math.students)
 
+rahim.quitSubject(math);
+babikir.quitSubject(math)
+console.log("updated math student ", math.students)
+
 console.log("svenska student ", svenska.students)
 
 
@@ -297,9 +338,4 @@ addTeacherToSchool(erik);
 addTeacherToSchool(niklas);
 
 
-
-
-  //11
-  //{
-  
 
