@@ -12,6 +12,20 @@ let medieinstitutet = {
     medieinstitutet.teachers.push(teacher)
 
   }
+
+  function addStudentToSchool(student) //add teacher to school
+  {
+    medieinstitutet.students.push(student)
+
+  }
+
+  function fireTeacher(teacher)
+  {
+      let teacherIndex = medieinstitutet.teachers.indexOf(teacher);
+medieinstitutet.teachers.splice(teacherIndex,1)
+  }
+
+
   function addSubjectToTeacher(sub,teacher)
   {
     teacher.subjects.push(sub);
@@ -28,8 +42,8 @@ let medieinstitutet = {
 
   function removeTeacherSubject(subject)
   {
-   this.subjects = removeFromArray(this.subjects,subject);
-   subject.teachers = removeFromArray(subject.teachers,this)
+  //  this.subjects = removeFromArray(this.subjects,subject);
+  //  subject.teachers = removeFromArray(subject.teachers,this)
 
   }
   function removeStudentSubject(subject)
@@ -328,14 +342,18 @@ rahim.enlistToSubject(math)
 console.log("math student ", math.students)
 
 rahim.quitSubject(math);
-babikir.quitSubject(math)
+// babikir.quitSubject(math);
 console.log("updated math student ", math.students)
 
 console.log("svenska student ", svenska.students)
 
+addStudentToSchool(rahim)
+addStudentToSchool(alrasheed)
 
 addTeacherToSchool(erik);
 addTeacherToSchool(niklas);
+addTeacherToSchool(maria)
 
+fireTeacher(niklas);
 
 
