@@ -11,6 +11,8 @@ let medieinstitutet = {
   {
     medieinstitutet.teachers.push(teacher)
 
+   
+
   }
 
   function addStudentToSchool(student) //add teacher to school
@@ -35,31 +37,20 @@ medieinstitutet.teachers.splice(teacherIndex,1)
   }
 
 
-  function removeFromArray(array,item)
-  {
-    return array.filter(element=> element !==item);
-  }
-
+  
   function removeTeacherSubject(subject)
   {
-  //  this.subjects = removeFromArray(this.subjects,subject);
-  //  subject.teachers = removeFromArray(subject.teachers,this)
+  this.subjects.splice(subject,1)
 
   }
   function removeStudentSubject(subject)
   {
-   this.subjects = removeFromArray(this.subjects,subject);
-   subject.students = removeFromArray(subject.students,this)
-
+  this.subjects.splice(subject,1)
   }
   
 
-
-
   //subjects
   
-
-
   let math = {
     name : "Math" ,
     students:[],
