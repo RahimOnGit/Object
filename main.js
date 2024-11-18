@@ -4,14 +4,16 @@ let medieinstitutet = {
     zipcode: "21647",
     city: "Malmo",
     students: [],
-    teachers: []
+    teachers: [],
+    relgateStudent,
+    fireTeacher 
   };
+
+
 //functions 
   function addTeacherToSchool(teacher) //add teacher to school
   {
     medieinstitutet.teachers.push(teacher)
-
-   
 
   }
 
@@ -36,8 +38,8 @@ medieinstitutet.teachers.splice(teacherIndex,1)
 
   }
 
-
   
+
   function removeTeacherSubject(subject)
   {
   this.subjects.splice(subject,1)
@@ -45,8 +47,25 @@ medieinstitutet.teachers.splice(teacherIndex,1)
   }
   function removeStudentSubject(subject)
   {
-  this.subjects.splice(subject,1)
+  let subjectIndex = this.subjects.indexOf(subject);
+    this.subjects.splice(subjectIndex,1)
+
+  let studentIndex = subject.students.indexOf(this);
+  subject.students.splice(studentIndex,1)
+
   }
+  
+  function relgateStudent(student)
+  {
+
+  let studentIndex = this.students.indexOf(student)
+  this.students.splice(studentIndex,1);
+  student.subjects = null;
+
+  }
+  
+
+
   
 
   //subjects
@@ -346,5 +365,6 @@ addTeacherToSchool(niklas);
 addTeacherToSchool(maria)
 
 fireTeacher(niklas);
+
 
 
